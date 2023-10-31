@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Students</title>
+</head>
+<body>
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>NAME</th>
+    <th>LAST NAME</th>
+    <th>COURSES</th>
+  </tr>
+
+  <tr th:each="student:${students}">
+    <td th:text="${student.id}"></td>
+    <td th:text="${student.name}"></td>
+    <td th:text="${student.lastName}"></td>
+    <td>
+      <h3 th:if="${#lists.isEmpty(student.courses)}">Empty list</h3>
+      <ul th:each="course:${student.courses}">
+        <li th:text="${course}"></li>
+      </ul>
+    </td>
+  </tr>
+
+</table>
+
+<h3><a th:href="@{/mvc/students/add}">ADD NEW STUDENT</a></h3>
+
+
+</body>
+</html>
